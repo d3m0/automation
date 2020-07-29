@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Integration test-suite" verbose="1" parallel="classes">
+    <test name="Cases with browser chrome" parallel="methods" thread-count="5">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="IndexPageTest"/>
+        </classes>
+    </test>
+    <test name="Cases with browser firefox" parallel="methods" thread-count="5">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="IndexPageTest"/>
+        </classes>
+    </test>
+</suite>
