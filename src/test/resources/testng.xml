@@ -13,4 +13,7 @@
             <class name="IndexPageTest"/>
         </classes>
     </test>
+    <listeners>
+        <listener class-name="utils.MyListener" />
+    </listeners>
 </suite>

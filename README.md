@@ -28,22 +28,23 @@ Stack:
  │    └─── browsers.json  
  ├─── src  
  │    ├─── main  
+ │    │    ├─── java  
+ │    │    │    ├─── forms  
+ │    │    │    │    └─── **/*Form.java  
+ │    │    │    ├─── pages  
+ │    │    │    │    └─── **/*Page.java  
+ │    │    │    └─── utils  
+ │    │    │         ├─── BaseTest.java  
+ │    │    │         ├─── CapabilitiesManager.java  
+ │    │    │         ├─── LoadingPageFactory.java  
+ │    │    │         ├─── utils.MyListener.java  
+ │    │    │         ├─── OptionsManager.java  
+ │    │    │         └─── Verify.java  
  │    │    └─── resources  
  │    │         └─── log4j2.xml  
  │    └─── test  
  │         ├─── java  
  │         │    ├─── **/*Test.java  
- │         │    ├─── forms  
- │         │    │    └─── **/*Form.java  
- │         │    ├─── pages  
- │         │    │    └─── **/*Page.java  
- │         │    └─── utils  
- │         │         ├─── BaseTest.java  
- │         │         ├─── CapabilitiesManager.java  
- │         │         ├─── LoadingPageFactory.java  
- │         │         ├─── MyListener.java  
- │         │         ├─── OptionsManager.java  
- │         │         └─── Verify.java  
  │         └─── resources  
  │              ├─── reportportal.properties    
  │              └─── testng.xml  

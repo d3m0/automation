@@ -19,20 +19,19 @@ import pages.IndexPage;
 import java.net.MalformedURLException;
 import java.net.URI;
 
-@Listeners({MyListener.class})
 public class BaseTest {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
 
-    public void setup(String browser, String useFakeVideoStream) {
+    public void setup(String browser) {
         LOGGER.trace("Setting up {} driver", browser);
-        setupDriver(Browser.valueOf(browser.toUpperCase()), Boolean.parseBoolean(useFakeVideoStream));
+        setupDriver(Browser.valueOf(browser.toUpperCase()));
     }
 
-    public void setupDriver(Browser browser, boolean useFakeVideoStream) {
+    public void setupDriver(Browser browser) {
         WebDriver webDriver = null;
 
-        MutableCapabilities browserOptions = OptionsManager.getOptions(browser, useFakeVideoStream);
+        MutableCapabilities browserOptions = OptionsManager.getOptions(browser);
 
         if (Boolean.parseBoolean(System.getProperty("selenoid.enabled"))) {
             DesiredCapabilities capabilities = CapabilitiesManager.getCapabilities(browserOptions);
