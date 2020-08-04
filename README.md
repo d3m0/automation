@@ -7,10 +7,10 @@
 ***Docker***: 19.03.8  
 
 **Frameworks/Libraries**  
-***Selenide***: 5.11.1 - WebDriver  
+***Selenide***: 5.13.0 - WebDriver  
 ***Selenoid***: 1.10.0 - Selenium Hub  
 ***Selenoid-UI***: 1.10.0 - Selenoid UI  
-***TestNG***: 6.14.3 - Testing Framework  
+***TestNG***: 7.1.0 - Testing Framework  
 ***ReportPortal***: 5.1.0 - Reporting
 
 Stack:  
