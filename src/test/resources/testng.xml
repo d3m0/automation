@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Integration test-suite" verbose="1" parallel="classes">
+<suite name="Integration test-suite" verbose="1">
     <test name="Cases with browser chrome" parallel="methods" thread-count="5">
         <parameter name="browser" value="chrome"/>
         <classes>
@@ -14,6 +14,6 @@
         </classes>
     </test>
     <listeners>
-        <listener class-name="utils.MyListener" />
+        <listener class-name="utils.MyListener"/>
     </listeners>
 </suite>

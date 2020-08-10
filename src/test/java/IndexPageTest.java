@@ -2,6 +2,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pages.IndexPage;
 import utils.BaseTest;
 
 public class IndexPageTest extends BaseTest {
@@ -14,5 +15,11 @@ public class IndexPageTest extends BaseTest {
     @Test
     public void verifyIndexPageOpened() {
         openStartPage();
+    }
+
+    @Test
+    public void verifyTopMenu() {
+        IndexPage indexPage = openStartPage();
+        indexPage.verifyTopMenu();
     }
 }
