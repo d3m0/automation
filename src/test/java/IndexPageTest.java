@@ -22,4 +22,22 @@ public class IndexPageTest extends BaseTest {
         IndexPage indexPage = openStartPage();
         indexPage.verifyTopMenu();
     }
+
+    @Test
+    public void userIsAbleToNavigateToWomenCategory() {
+        IndexPage indexPage = openStartPage();
+        indexPage.navigateToWomenCategory();
+    }
+
+    @Test
+    public void userIsAbleToNavigateToDressesCategory() {
+        IndexPage indexPage = openStartPage();
+        indexPage.navigateToDressesCategory();
+    }
+
+    @Test
+    public void userIsAbleToNavigateToTShirtsCategory() {
+        IndexPage indexPage = openStartPage();
+        indexPage.navigateToTShirtsCategory();
+    }
 }

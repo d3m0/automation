@@ -19,4 +19,16 @@ public class TopMenu extends ElementsContainer {
         assert dressesButton.isDisplayed();
         assert tShirtsButton.isDisplayed();
     }
+
+    public void clickWomenCategory() {
+        womenButton.click();
+    }
+
+    public void clickDressesCategory() {
+        dressesButton.click();
+    }
+
+    public void clickTShirtsCategory() {
+        tShirtsButton.click();
+    }
 }

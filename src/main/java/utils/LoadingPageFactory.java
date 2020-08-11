@@ -8,9 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LoadingPageFactory {
-
     public static <T> T get(WebDriver driver, Class<T> pageObjectClass) {
-        Logger logger = LoggerFactory.getLogger(pageObjectClass);
+        String simpleName = pageObjectClass.getSimpleName();
+        Logger logger = LoggerFactory.getLogger(simpleName);
         logger.trace("Initializing page");
         Verify verify = pageObjectClass.getAnnotation(Verify.class);
 
@@ -18,18 +18,13 @@ public class LoadingPageFactory {
         try {
             expectedPageTitle = verify.title();
         } catch (NullPointerException exception) {
-            throw new ElementNotVisibleException("Please use @Verify annotation for page " + pageObjectClass.getName());
+            throw new ElementNotVisibleException(String.format("Please use @Verify annotation for %s page", simpleName));
         }
+
         if (!expectedPageTitle.equals(Verify.INVALID_TITLE)) {
             String actualPageTitle = driver.getTitle();
             if (!expectedPageTitle.equals(actualPageTitle)) {
-                throw new IllegalStateException(
-                        String.format(
-                                "expected page title %s but was %s",
-                                expectedPageTitle,
-                                actualPageTitle
-                        )
-                );
+                throw new IllegalStateException(String.format("Expected page title '%s' but was '%s'", expectedPageTitle, actualPageTitle));
             }
         }
 

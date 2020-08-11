@@ -13,7 +13,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import pages.IndexPage;
 
 import java.net.MalformedURLException;
@@ -21,7 +22,7 @@ import java.net.URI;
 
 public class BaseTest {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-    private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class.getSimpleName());
 
     public void setup(String browser) {
         LOGGER.trace("Setting up {} driver", browser);
