@@ -44,7 +44,8 @@ Stack:
  │    │         └─── log4j2.xml  
  │    └─── test  
  │         ├─── java  
- │         │    ├─── **/*Test.java  
+ │         │    └─── testcases
+                     └─── **/*Test.java  
  │         └─── resources  
  │              ├─── reportportal.properties    
  │              └─── testng.xml  

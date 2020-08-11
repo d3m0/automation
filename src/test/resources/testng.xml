@@ -3,14 +3,17 @@
 <suite name="Integration test-suite" verbose="1" parallel="methods">
     <test name="Cases with browser chrome" parallel="methods" thread-count="5">
         <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="IndexPageTest"/>
-        </classes>
+        <packages>
+            <package name="testcases.*"></package>
+        </packages>
+<!--        <classes>-->
+<!--            <class name="testcases.IndexPageTest"/>-->
+<!--        </classes>-->
     </test>
     <test name="Cases with browser firefox" parallel="methods" thread-count="5">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="IndexPageTest"/>
+            <class name="testcases.IndexPageTest"/>
         </classes>
     </test>
     <listeners>
