@@ -4,11 +4,11 @@
     <test name="Cases with browser chrome" parallel="methods" thread-count="5">
         <parameter name="browser" value="chrome"/>
         <packages>
-            <package name="testcases.*"></package>
+            <package name="testcases.*"/>
         </packages>
-<!--        <classes>-->
-<!--            <class name="testcases.IndexPageTest"/>-->
-<!--        </classes>-->
+        <!--        <classes>-->
+        <!--            <class name="testcases.IndexPageTest"/>-->
+        <!--        </classes>-->
     </test>
     <test name="Cases with browser firefox" parallel="methods" thread-count="5">
         <parameter name="browser" value="firefox"/>
