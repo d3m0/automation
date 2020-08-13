@@ -62,6 +62,11 @@
             <artifactId>logger-java-log4j</artifactId>
             <version>5.0.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -45,7 +45,7 @@ Stack:
  │    └─── test  
  │         ├─── java  
  │         │    └─── testcases
-                     └─── **/*Test.java  
+ │         │         └─── **/*Test.java  
  │         └─── resources  
  │              ├─── reportportal.properties    
  │              └─── testng.xml  

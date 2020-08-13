@@ -1,7 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.WebDriverRunner;
-import forms.TopMenu;
+import forms.HeaderForm;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -11,10 +11,11 @@ import utils.Verify;
 
 @Verify(title = "My Store")
 public class IndexPage {
-    public static final Logger LOGGER = LoggerFactory.getLogger(IndexPage.class.getSimpleName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(IndexPage.class.getSimpleName());
     private final WebDriver webDriver;
-    @FindBy(xpath = "//div[@id='block_top_menu']")
-    private TopMenu topMenu;
+
+    @FindBy(id = "header")
+    private HeaderForm headerForm;
 
     private IndexPage() {
         webDriver = WebDriverRunner.getWebDriver();
@@ -22,24 +23,30 @@ public class IndexPage {
 
     public void verifyTopMenu() {
         LOGGER.trace("Verifying Top Menu block");
-        topMenu.verifyLinkArePresent();
+        headerForm.verifyLinkArePresent();
     }
 
     public WomenCategoryPage navigateToWomenCategory() {
         LOGGER.trace("Navigating to WOMEN category");
-        topMenu.clickWomenCategory();
+        headerForm.clickWomenCategory();
         return LoadingPageFactory.get(webDriver, WomenCategoryPage.class);
     }
 
     public DressesCategoryPage navigateToDressesCategory() {
         LOGGER.trace("Navigating to DRESSES category");
-        topMenu.clickDressesCategory();
+        headerForm.clickDressesCategory();
         return LoadingPageFactory.get(webDriver, DressesCategoryPage.class);
     }
 
     public TShirtsCategoryPage navigateToTShirtsCategory() {
         LOGGER.trace("Navigating to T-SHIRTS category");
-        topMenu.clickTShirtsCategory();
+        headerForm.clickTShirtsCategory();
         return LoadingPageFactory.get(webDriver, TShirtsCategoryPage.class);
+    }
+
+    public AuthenticationPage navigateToAuthenticationPage() {
+        LOGGER.trace("Navigating to Authentication page");
+        headerForm.clickSignInButton();
+        return LoadingPageFactory.get(webDriver, AuthenticationPage.class);
     }
 }
