@@ -1,5 +1,6 @@
 package utils;
 
+import enums.Browser;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;

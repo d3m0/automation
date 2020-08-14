@@ -29,6 +29,12 @@ Stack:
  ├─── src  
  │    ├─── main  
  │    │    ├─── java  
+ │    │    │    ├─── builders  
+ │    │    │    │    └─── **/*Builder.java  
+ │    │    │    ├─── entities  
+ │    │    │    │    └─── **/**.java  
+ │    │    │    ├─── enums  
+ │    │    │    │    └─── **/**.java  
  │    │    │    ├─── forms  
  │    │    │    │    └─── **/*Form.java  
  │    │    │    ├─── pages  
@@ -37,7 +43,7 @@ Stack:
  │    │    │         ├─── BaseTest.java  
  │    │    │         ├─── CapabilitiesManager.java  
  │    │    │         ├─── LoadingPageFactory.java  
- │    │    │         ├─── utils.MyListener.java  
+ │    │    │         ├─── MyListener.java  
  │    │    │         ├─── OptionsManager.java  
  │    │    │         └─── Verify.java  
  │    │    └─── resources  
