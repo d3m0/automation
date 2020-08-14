@@ -1,6 +1,7 @@
 package utils;
 
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LoadingPageFactory {
-    public static <T> T get(WebDriver driver, Class<T> pageObjectClass) {
+    public static <T> T get(Class<T> pageObjectClass) {
+        WebDriver driver = WebDriverRunner.getWebDriver();
+
         String simpleName = pageObjectClass.getSimpleName();
         Logger logger = LoggerFactory.getLogger(simpleName);
         logger.trace("Initializing page");

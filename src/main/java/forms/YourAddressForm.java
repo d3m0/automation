@@ -23,7 +23,10 @@ public class YourAddressForm extends ElementsContainer {
     private SelenideElement zipInput;
 
     @FindBy(id = "id_country")
-    private SelenideElement countryInput;
+    private SelenideElement countryDropdown;
+
+    @FindBy(id = "phone_mobile")
+    private SelenideElement mobilePhoneInput;
 
     public void fill(User user) {
         Address address = user.getAddress();
@@ -32,5 +35,7 @@ public class YourAddressForm extends ElementsContainer {
         cityInput.setValue(address.getCity());
         stateDropdown.selectOption(address.getState());
         zipInput.setValue(address.getZip());
+        countryDropdown.selectOption(address.getCountry());
+        mobilePhoneInput.setValue(user.getMobilePhone());
     }
 }

@@ -55,7 +55,7 @@ public class PersonalInformationForm extends ElementsContainer {
         Calendar cal = Calendar.getInstance();
         cal.setTime(dateOfBirth);
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        int month = cal.get(Calendar.MONTH);
+        int month = cal.get(Calendar.MONTH) + 1;
         int year = cal.get(Calendar.YEAR);
 
         dobDaysDropdown.selectOptionByValue(String.valueOf(day));

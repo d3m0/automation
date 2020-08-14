@@ -74,11 +74,17 @@ public class BaseTest {
         String url = System.getProperty("url.address");
         LOGGER.trace("Navigating to {}", url);
         Selenide.open(url);
-        return LoadingPageFactory.get(driver, IndexPage.class);
+        return LoadingPageFactory.get(IndexPage.class);
     }
 
     private WebDriver getDriver() {
         //Get driver from ThreadLocalMap
-        return driver.get();
+        WebDriver webDriver = driver.get();
+        if (webDriver == null) {
+            setupDriver(Browser.CHROME);
+            webDriver = driver.get();
+        }
+
+        return webDriver;
     }
 }

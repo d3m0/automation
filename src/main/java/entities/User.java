@@ -13,6 +13,18 @@ public class User {
     private final String password;
     private final Date dateOfBirth;
     private final Address address;
+    private final String mobilePhone;
+
+    public User(UserBuilder builder) {
+        this.title = builder.getTitle();
+        this.firstName = builder.getFirstName();
+        this.lastName = builder.getLastName();
+        this.email = builder.getEmail();
+        this.password = builder.getPassword();
+        this.dateOfBirth = builder.getDateOfBirth();
+        this.address = builder.getAddress();
+        this.mobilePhone = builder.getMobilePhone();
+    }
 
     public Title getTitle() {
         return title;
@@ -42,13 +54,21 @@ public class User {
         return address;
     }
 
-    public User(UserBuilder builder) {
-        this.title = builder.getTitle();
-        this.firstName = builder.getFirstName();
-        this.lastName = builder.getLastName();
-        this.email = builder.getEmail();
-        this.password = builder.getPassword();
-        this.dateOfBirth = builder.getDateOfBirth();
-        this.address = builder.getAddress();
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "title=" + title +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", address=" + address +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                '}';
     }
 }

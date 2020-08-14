@@ -15,6 +15,7 @@ public class UserBuilder {
     private String password;
     private Date dateOfBirth;
     private Address address;
+    private String mobilePhone;
 
     public UserBuilder() {
         Faker faker = new Faker();
@@ -25,6 +26,7 @@ public class UserBuilder {
         this.password = faker.internet().password();
         this.dateOfBirth = faker.date().birthday();
         this.address = new AddressBuilder().build();
+        this.mobilePhone = faker.phoneNumber().cellPhone();
     }
 
     public Title getTitle() {
@@ -87,6 +89,15 @@ public class UserBuilder {
 
     public UserBuilder setAddress(Address address) {
         this.address = address;
+        return this;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public UserBuilder setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
         return this;
     }
 

@@ -20,13 +20,14 @@ public class RegistrationTest extends BaseTest {
         openStartPage().navigateToAuthenticationPage();
     }
 
-    @Test(dependsOnMethods = "userIsAbleToNavigateToAuthenticationPage")
+    //    @Test(dependsOnMethods = "userIsAbleToNavigateToAuthenticationPage")
+    @Test()
     public void userIsAbleToCreateAccount() {
         User user = new UserBuilder().build();
         openStartPage()
                 .navigateToAuthenticationPage()
                 .navigateToCreateAccountPage(user.getEmail())
-                .fillAccountInfo(user);
-
+                .fillAccountInfo(user)
+                .register();
     }
 }
