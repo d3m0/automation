@@ -14,6 +14,7 @@
         <!--        UPDATE to your specific address-->
         <selenoid.hub.address>http://localhost:4444</selenoid.hub.address>
         <url.address>http://automationpractice.com/</url.address>
+<!--        <url.address>https://webrtc.github.io/samples/src/content/devices/input-output/</url.address>-->
     </properties>
 
     <dependencies>

@@ -2,14 +2,14 @@ package utils;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
-import enums.Browser;
+import entities.Browser;
+import entities.ChromeBrowser;
+import entities.FirefoxBrowser;
+import enums.BrowserType;
+import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
@@ -22,37 +22,31 @@ import java.net.MalformedURLException;
 import java.net.URI;
 
 public class BaseTest {
-    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class.getSimpleName());
+    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public void setup(String browser) {
-        LOGGER.trace("Setting up {} driver", browser);
-        setupDriver(Browser.valueOf(browser.toUpperCase()));
+    public void setup(String browserName) {
+        LOGGER.trace("Setting up {} driver", browserName);
+        BrowserType browserType = BrowserType.valueOf(browserName.toUpperCase());
+        switch (browserType) {
+            case CHROME:
+                setupDriver(new ChromeBrowser());
+                break;
+            case FIREFOX:
+                setupDriver(new FirefoxBrowser());
+                break;
+            default:
+                throw new NotFoundException("Desired browser not found. Please add");
+        }
     }
 
     public void setupDriver(Browser browser) {
-        WebDriver webDriver = null;
-
-        MutableCapabilities browserOptions = OptionsManager.getOptions(browser);
+        WebDriver webDriver;
 
         if (Boolean.parseBoolean(System.getProperty("selenoid.enabled"))) {
-            DesiredCapabilities capabilities = CapabilitiesManager.getCapabilities(browserOptions);
-            String selenoidHubAddress = System.getProperty("selenoid.hub.address");
-            try {
-                webDriver = new RemoteWebDriver(URI.create(selenoidHubAddress + "/wd/hub").toURL(), capabilities);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
+            webDriver = setupWebDriverWithSelenoid(browser);
         } else {
-            switch (browser) {
-                case CHROME:
-                    WebDriverManager.chromedriver().setup();
-                    webDriver = new ChromeDriver((ChromeOptions) browserOptions);
-                    break;
-                case FIREFOX:
-                    WebDriverManager.firefoxdriver().setup();
-                    webDriver = new FirefoxDriver((FirefoxOptions) browserOptions);
-            }
+            webDriver = setupWebDriverWithWebDriverManager(browser);
         }
 
         driver.set(webDriver);
@@ -78,14 +72,27 @@ public class BaseTest {
         return LoadingPageFactory.get(IndexPage.class);
     }
 
+    private WebDriver setupWebDriverWithWebDriverManager(Browser browser) {
+        BrowserType browserType = browser.getType();
+        DriverManagerType driverManagerType = DriverManagerType.valueOf(browserType.name());
+        WebDriverManager.getInstance(driverManagerType).setup();
+        return browser.getDriver();
+    }
+
+    private WebDriver setupWebDriverWithSelenoid(Browser browser) {
+        WebDriver webDriver = null;
+        String selenoidHubAddress = System.getProperty("selenoid.hub.address");
+        DesiredCapabilities capabilities = CapabilitiesManager.getCapabilities(browser.getBrowserOptions());
+        try {
+            webDriver = new RemoteWebDriver(URI.create(selenoidHubAddress + "/wd/hub").toURL(), capabilities);
+        } catch (MalformedURLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        return webDriver;
+    }
+
     private WebDriver getDriver() {
         //Get driver from ThreadLocalMap
-        WebDriver webDriver = driver.get();
-        if (webDriver == null) {
-            setupDriver(Browser.CHROME);
-            webDriver = driver.get();
-        }
-
-        return webDriver;
+        return driver.get();
     }
 }

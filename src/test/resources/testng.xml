@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Integration test-suite" verbose="1" parallel="methods">
-    <test name="Cases with browser chrome" parallel="methods" thread-count="5">
+<suite name="Integration test-suite" verbose="1" parallel="instances" thread-count="20">
+    <test name="Cases with browser chrome" parallel="methods" thread-count="10">
         <parameter name="browser" value="chrome"/>
         <packages>
             <package name="testcases.*"/>
         </packages>
-        <!--        <classes>-->
-        <!--            <class name="testcases.IndexPageTest"/>-->
-        <!--        </classes>-->
     </test>
-    <test name="Cases with browser firefox" parallel="methods" thread-count="5">
+    <test name="Cases with browser firefox" parallel="methods" thread-count="10">
         <parameter name="browser" value="firefox"/>
-        <classes>
-            <class name="testcases.IndexPageTest"/>
-            <class name="testcases.RegistrationTest"/>
-        </classes>
+        <packages>
+            <package name="testcases.*"/>
+        </packages>
+<!--        <classes>-->
+<!--            <class name="testcases.IndexPageTest"/>-->
+<!--            <class name="testcases.RegistrationTest"/>-->
+<!--        </classes>-->
     </test>
     <listeners>
         <listener class-name="utils.MyListener"/>
