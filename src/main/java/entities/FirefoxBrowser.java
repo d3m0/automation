@@ -19,6 +19,6 @@ public class FirefoxBrowser implements Browser {
 
     @Override
     public RemoteWebDriver getDriver() {
-        return new FirefoxDriver();
+        return new FirefoxDriver(getBrowserOptions());
     }
 }

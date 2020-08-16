@@ -1,9 +1,9 @@
 {
   "chrome": {
-    "default": "81.0",
+    "default": "84.0",
     "versions": {
-      "81.0": {
-        "image": "selenoid/vnc:chrome_81.0",
+      "84.0": {
+        "image": "selenoid/vnc:chrome_84.0",
         "port": "4444",
         "path": "/",
         "tmpfs": {
@@ -13,10 +13,10 @@
     }
   },
   "firefox": {
-    "default": "75.0",
+    "default": "79.0",
     "versions": {
-      "75.0": {
-        "image": "selenoid/vnc:firefox_75.0",
+      "79.0": {
+        "image": "selenoid/vnc:firefox_79.0",
         "port": "4444",
         "path": "/wd/hub"
       }

@@ -19,6 +19,6 @@ public class ChromeBrowser implements Browser {
 
     @Override
     public RemoteWebDriver getDriver() {
-        return new ChromeDriver();
+        return new ChromeDriver(getBrowserOptions());
     }
 }
