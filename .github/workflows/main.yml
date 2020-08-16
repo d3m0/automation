@@ -27,6 +27,6 @@ jobs:
       with:
         java-version: '11.0.3'    # Runs a single command using the runners shell
     - name: Start Selenoid
-      run: curl -s https://aerokube.com/cm/bash | bash && ./cm selenoid start --vnc
+      run: curl -s https://aerokube.com/cm/bash | bash && ./cm selenoid start --browsers-json config/browsers.json
     - name: Build with Maven
       run: mvn test -Drp.enable=false
