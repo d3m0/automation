@@ -2,6 +2,9 @@ package utils;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,20 +32,28 @@ public class MyListener extends ReportPortalTestNGListener {
         String methodName = testResult.getMethod().getMethodName().trim();
 
         WebDriver webDriver = WebDriverRunner.getWebDriver();
-
-        Screenshot screenshot = new AShot()
-                .shootingStrategy(ShootingStrategies.viewportPasting(100))
-                .takeScreenshot(webDriver);
-
         File destFile = new File("build/reports/tests/" + className + "/" + methodName + "/" + System.currentTimeMillis() + ".png");
 
         try {
-            ImageIO.write(screenshot.getImage(), "PNG", destFile);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
+            takeScreenshotWithSeleniumWebDriver((TakesScreenshot) webDriver, destFile);
+            getScreenshotByAShot(webDriver, destFile);
+        } catch (IOException exception) {
+            LOGGER.error(exception.getMessage(), exception);
         }
 
         LOGGER.error("RP_MESSAGE#FILE#{}#{}", destFile, "Screenshot");
         super.onTestFailure(testResult);
+    }
+
+    private void takeScreenshotWithSeleniumWebDriver(TakesScreenshot webDriver, File destFile) throws IOException {
+        File tmpFile = webDriver.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(tmpFile, destFile);
+    }
+
+    private void getScreenshotByAShot(WebDriver webDriver, File destFile) throws IOException {
+        Screenshot screenshot = new AShot()
+                .shootingStrategy(ShootingStrategies.viewportPasting(10))
+                .takeScreenshot(webDriver);
+        ImageIO.write(screenshot.getImage(), "PNG", destFile);
     }
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 
 public class LoadingPageFactory {
     public static <T> T get(Class<T> pageObjectClass) {
@@ -26,9 +27,7 @@ public class LoadingPageFactory {
 
         if (!expectedPageTitle.equals(Verify.INVALID_TITLE)) {
             String actualPageTitle = driver.getTitle();
-            if (!expectedPageTitle.equals(actualPageTitle)) {
-                throw new IllegalStateException(String.format("Expected page title '%s' but was '%s'", expectedPageTitle, actualPageTitle));
-            }
+            Assert.assertEquals(expectedPageTitle, actualPageTitle, "Page title is correct.");
         }
 
         String xpath = verify.xpath();
