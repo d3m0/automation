@@ -27,6 +27,6 @@ jobs:
       with:
         java-version: '11.0.3'
     - name: Start Selenoid
-      run: curl -s https://aerokube.com/cm/bash | bash && ./cm selenoid start --browsers 'firefox:79.0;chrome:84.0'
+      run: curl -s https://aerokube.com/cm/bash | bash && ./cm selenoid start --browsers-json $GITHUB_WORKSPACE/config/browsers.json
     - name: Build with Maven
       run: mvn test -Drp.enable=false
