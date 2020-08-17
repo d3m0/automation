@@ -4,7 +4,21 @@
     <test name="Cases with browser chrome" parallel="methods" thread-count="10">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="testcases.FailingCases"/>
+            <class name="testcases.FailingCases">
+                <methods>
+                    <exclude name="testShouldFailBecauseOfIncorrectBrowser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Test case with incorrect browser">
+        <classes>
+            <class name="testcases.FailingCases">
+                <parameter name="browser" value="Incorrect Browser"/>
+                <methods>
+                    <include name="testShouldFailBecauseOfIncorrectBrowser"/>
+                </methods>
+            </class>
         </classes>
     </test>
     <listeners>

@@ -27,16 +27,19 @@ public class BaseTest {
 
     public void setup(String browserName) {
         LOGGER.trace("Setting up {} driver", browserName);
-        BrowserType browserType = BrowserType.valueOf(browserName.toUpperCase());
-        switch (browserType) {
-            case CHROME:
-                setupDriver(new ChromeBrowser());
-                break;
-            case FIREFOX:
-                setupDriver(new FirefoxBrowser());
-                break;
-            default:
-                throw new NotFoundException("Desired browser not found. Please add");
+        try {
+            BrowserType browserType = BrowserType.valueOf(browserName.toUpperCase());
+            switch (browserType) {
+                case CHROME:
+                    setupDriver(new ChromeBrowser());
+                    break;
+                case FIREFOX:
+                    setupDriver(new FirefoxBrowser());
+                    break;
+            }
+        } catch (IllegalArgumentException exception) {
+            LOGGER.error("BROWSER NOT FOUND");
+            throw new NotFoundException(String.format("Browser '%s' not found. Please add", browserName));
         }
     }
 
@@ -73,6 +76,7 @@ public class BaseTest {
     }
 
     private WebDriver setupWebDriverWithWebDriverManager(Browser browser) {
+        LOGGER.trace("Setting up driver with WebDriverManager");
         BrowserType browserType = browser.getType();
         DriverManagerType driverManagerType = DriverManagerType.valueOf(browserType.name());
         WebDriverManager.getInstance(driverManagerType).setup();
@@ -80,9 +84,10 @@ public class BaseTest {
     }
 
     private WebDriver setupWebDriverWithSelenoid(Browser browser) {
+        LOGGER.trace("Setting up driver with Selenoid");
         WebDriver webDriver = null;
         String selenoidHubAddress = System.getProperty("selenoid.hub.address");
-        DesiredCapabilities capabilities = CapabilitiesManager.getCapabilities(browser.getBrowserOptions());
+        DesiredCapabilities capabilities = browser.getCapabilities();
         try {
             webDriver = new RemoteWebDriver(URI.create(selenoidHubAddress + "/wd/hub").toURL(), capabilities);
         } catch (MalformedURLException e) {

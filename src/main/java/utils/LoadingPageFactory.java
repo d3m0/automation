@@ -27,7 +27,7 @@ public class LoadingPageFactory {
 
         if (!expectedPageTitle.equals(Verify.INVALID_TITLE)) {
             String actualPageTitle = driver.getTitle();
-            Assert.assertEquals(expectedPageTitle, actualPageTitle, "Page title is correct.");
+            Assert.assertEquals(actualPageTitle, expectedPageTitle, "Page title is correct.");
         }
 
         String xpath = verify.xpath();

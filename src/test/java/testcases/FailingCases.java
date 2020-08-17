@@ -30,4 +30,9 @@ public class FailingCases extends BaseTest {
         SelenideElement tShirtsButton = Selenide.$(By.xpath(".//ul[not(contains(@style, 'display: none'))]/li/a[@title='T-shirts']/span"));
         tShirtsButton.click();
     }
+
+    @Test
+    public void testShouldFailBecauseOfIncorrectBrowser() {
+        openStartPage();
+    }
 }
