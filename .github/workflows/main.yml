@@ -28,5 +28,5 @@ jobs:
         java-version: '11.0.3'
     - name: Start Selenoid
       run: curl -s https://aerokube.com/cm/bash | bash && ./cm selenoid start --browsers 'firefox:79.0;chrome:84.0'
-    - name: Build with Maven
+    - name: Execute test-cases with Maven
       run: mvn test -Drp.enable=false

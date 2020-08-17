@@ -21,6 +21,9 @@ Stack:
 - ReportPortal (reporting tool)  
 
 ```
+ ├─── .github  
+ │    └─── workflows  
+ │         └─── main.yml  
  ├─── build  
  │    └─── reports  
  │         └─── tests  
@@ -45,10 +48,8 @@ Stack:
  │    │    │    │    └─── **/*Page.java  
  │    │    │    └─── utils  
  │    │    │         ├─── BaseTest.java  
- │    │    │         ├─── CapabilitiesManager.java  
  │    │    │         ├─── LoadingPageFactory.java  
  │    │    │         ├─── MyListener.java  
- │    │    │         ├─── OptionsManager.java  
  │    │    │         └─── Verify.java  
  │    │    └─── resources  
  │    │         └─── log4j2.xml  
