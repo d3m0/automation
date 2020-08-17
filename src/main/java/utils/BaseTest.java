@@ -93,6 +93,12 @@ public class BaseTest {
 
     private WebDriver getDriver() {
         //Get driver from ThreadLocalMap
-        return driver.get();
+        WebDriver webDriver = driver.get();
+        if (webDriver == null || ((RemoteWebDriver) webDriver).getSessionId() == null) {
+            setupDriver(new ChromeBrowser());
+            webDriver = driver.get();
+        }
+
+        return webDriver;
     }
 }

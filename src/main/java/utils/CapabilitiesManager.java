@@ -13,12 +13,12 @@ public class CapabilitiesManager {
         switch (browserType) {
             case CHROME:
                 capabilities.setBrowserName("chrome");
-                capabilities.setVersion("81.0");
+                capabilities.setVersion("84.0");
                 capabilities.setCapability(ChromeOptions.CAPABILITY, browserOptions);
                 break;
             case FIREFOX:
                 capabilities.setBrowserName("firefox");
-                capabilities.setVersion("75.0");
+                capabilities.setVersion("79.0");
                 capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, browserOptions);
         }
         capabilities.setCapability("enableVNC", true);
