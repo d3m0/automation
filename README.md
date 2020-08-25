@@ -70,10 +70,9 @@ Stack:
 **Installation**    
 1. Clone project.  
 2. Make sure you have recent [Docker](https://www.docker.com/) installed.  
-3. Edit _config/browsers.json_ (instructions could be found [here](https://aerokube.com/selenoid/latest/#_browsers_configuration_file), list of available images is [here](https://aerokube.com/selenoid/latest/#_browser_image_information)).  
-4. Download browser images manually (`docker pull image` where `image` specified in _config/browsers.json_) or automatically using [jq](https://stedolan.github.io/jq/download/) tool. See execution command in _update_browsers.sh_.  
-5. If you're running docker on Windows, be sure to update _docker-compose.yml_ (uncomment Windows-related `postgres.volumes` section and `volumes` at the end of the file) for correct ReportPortal work.  
-6. Run `docker-compose up --force-recreate -d` to start Selenoid, Selenoid UI and ReportPortal.  
+3. Browsers that will be used described in _config/browsers.json_. Chrome and Firefox images included into _docker_compose.yml_. If you need to update browsers, edit _config/browsers.json_ (instructions could be found [here](https://aerokube.com/selenoid/latest/#_browsers_configuration_file), list of available images is [here](https://aerokube.com/selenoid/latest/#_browser_image_information)). Download browser images manually (`docker pull image` where `image` specified in _config/browsers.json_) or automatically using [jq](https://stedolan.github.io/jq/download/) tool. See execution command in _update_browsers.sh_.  
+4. If you're running docker on Windows, be sure to update _docker-compose.yml_ (uncomment Windows-related `postgres.volumes` section and `volumes` at the end of the file) for correct ReportPortal work.  
+5. Run `docker-compose up --force-recreate -d` to start Selenoid, Selenoid UI and ReportPortal.  
   
 **Execution**    
 1. If you want to use Selenoid as a hub, update `selenoid.hub.address` in _pom.xml_ with your actual IP address (`docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id`). If you want to use built-in WebDriverManager just set parameter `selenoid.enabled` to false.  
