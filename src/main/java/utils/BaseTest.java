@@ -14,8 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.*;
 import pages.IndexPage;
 
 import java.net.MalformedURLException;
@@ -25,7 +24,9 @@ public class BaseTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class.getSimpleName());
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public void setup(String browserName) {
+    @BeforeMethod()
+    @Parameters({"browser"})
+    public void setup(@Optional("chrome") String browserName) {
         LOGGER.trace("Setting up {} driver", browserName);
         try {
             BrowserType browserType = BrowserType.valueOf(browserName.toUpperCase());
