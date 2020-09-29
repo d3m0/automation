@@ -6,8 +6,8 @@ import entities.Browser;
 import entities.ChromeBrowser;
 import entities.FirefoxBrowser;
 import enums.BrowserType;
-import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -58,6 +58,7 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
+        LOGGER.info("Closing WebDriver");
         getDriver().quit();
     }
 
