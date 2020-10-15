@@ -12,14 +12,17 @@ public class IndexPageTest extends BaseTest {
 
     @Test
     public void verifyTopMenu() {
-        IndexPage indexPage = openStartPage();
-        indexPage.verifyTopMenu();
+        openStartPage().verifyTopMenu();
     }
 
     @Test
     public void userIsAbleToNavigateToWomenCategory() {
-        IndexPage indexPage = openStartPage();
-        indexPage.navigateToWomenCategory();
+        openStartPage().navigateToWomenCategory();
+    }
+
+    @Test(dependsOnMethods = "userIsAbleToNavigateToWomenCategory")
+    public void verifyWomenCategoryPageContainsAllBlocks() {
+        openStartPage().navigateToWomenCategory().verifyBlocksPresent();
     }
 
     @Test

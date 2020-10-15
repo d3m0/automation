@@ -1,17 +1,12 @@
 package pages;
 
-import com.codeborne.selenide.WebDriverRunner;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.Verify;
 
+import static java.lang.invoke.MethodHandles.lookup;
+
 @Verify(title = "Dresses - My Store")
 public class DressesCategoryPage {
-    public static final Logger LOGGER = LoggerFactory.getLogger(IndexPage.class.getSimpleName());
-    private final WebDriver webDriver;
-
-    private DressesCategoryPage() {
-        webDriver = WebDriverRunner.getWebDriver();
-    }
+    private final static Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass().getSimpleName());
 }

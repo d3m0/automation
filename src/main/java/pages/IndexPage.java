@@ -1,6 +1,5 @@
 package pages;
 
-import com.codeborne.selenide.WebDriverRunner;
 import forms.HeaderForm;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -44,9 +43,5 @@ public class IndexPage {
         LOGGER.trace("Navigating to Authentication page");
         headerForm.clickSignInButton();
         return LoadingPageFactory.get(AuthenticationPage.class);
-    }
-
-    public String getTitle() {
-        return WebDriverRunner.getWebDriver().getTitle();
     }
 }

@@ -1,9 +1,9 @@
 package forms;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsContainer;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 public class HeaderForm extends ElementsContainer {
     @FindBy(xpath = ".//ul[not(contains(@style, 'display: none'))]/li/a[@title='Women']")
@@ -19,9 +19,9 @@ public class HeaderForm extends ElementsContainer {
     private SelenideElement signInButton;
 
     public void verifyLinkArePresent() {
-        Assert.assertTrue(womenButton.isDisplayed(), "WOMEN button is present on page");
-        Assert.assertTrue(dressesButton.isDisplayed(), "DRESSES button is present on page");
-        Assert.assertTrue(tShirtsButton.isDisplayed(), "T-SHIRTS button is present on page");
+        womenButton.shouldBe(Condition.visible);
+        dressesButton.shouldBe(Condition.visible);
+        tShirtsButton.shouldBe(Condition.visible);
     }
 
     public void clickWomenCategory() {

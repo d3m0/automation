@@ -9,7 +9,6 @@ import enums.BrowserType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
@@ -22,7 +21,7 @@ import java.net.URI;
 
 public class BaseTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class.getSimpleName());
-    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    public static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
 
     @BeforeMethod()
     @Parameters({"browser"})
@@ -45,7 +44,7 @@ public class BaseTest {
     }
 
     public void setupDriver(Browser browser) {
-        WebDriver webDriver;
+        RemoteWebDriver webDriver;
 
         if (Boolean.parseBoolean(System.getProperty("selenoid.enabled"))) {
             webDriver = setupWebDriverWithSelenoid(browser);
@@ -58,18 +57,20 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        LOGGER.info("Closing WebDriver");
-        getDriver().quit();
+        RemoteWebDriver driver = getDriver();
+        LOGGER.info("Closing WebDriver {}", driver.getSessionId());
+        driver.quit();
     }
 
     @AfterClass
     public void terminate() {
         //Remove the ThreadLocalMap element
+        LOGGER.info("Terminating WebDriver {}", driver.get().getSessionId());
         driver.remove();
     }
 
     public IndexPage openStartPage() {
-        WebDriver driver = getDriver();
+        RemoteWebDriver driver = getDriver();
         WebDriverRunner.setWebDriver(driver);
         String url = System.getProperty("url.address");
         LOGGER.trace("Navigating to {}", url);
@@ -77,7 +78,7 @@ public class BaseTest {
         return LoadingPageFactory.get(IndexPage.class);
     }
 
-    private WebDriver setupWebDriverWithWebDriverManager(Browser browser) {
+    private RemoteWebDriver setupWebDriverWithWebDriverManager(Browser browser) {
         LOGGER.trace("Setting up driver with WebDriverManager");
         BrowserType browserType = browser.getType();
         DriverManagerType driverManagerType = DriverManagerType.valueOf(browserType.name());
@@ -85,23 +86,24 @@ public class BaseTest {
         return browser.getDriver();
     }
 
-    private WebDriver setupWebDriverWithSelenoid(Browser browser) {
+    private RemoteWebDriver setupWebDriverWithSelenoid(Browser browser) {
         LOGGER.trace("Setting up driver with Selenoid");
-        WebDriver webDriver = null;
+        RemoteWebDriver webDriver = null;
         String selenoidHubAddress = System.getProperty("selenoid.hub.address");
         DesiredCapabilities capabilities = browser.getCapabilities();
         try {
             webDriver = new RemoteWebDriver(URI.create(selenoidHubAddress + "/wd/hub").toURL(), capabilities);
+            LOGGER.info("WebDriver session id: {}", webDriver.getSessionId());
         } catch (MalformedURLException e) {
             LOGGER.error(e.getMessage(), e);
         }
         return webDriver;
     }
 
-    private WebDriver getDriver() {
+    private RemoteWebDriver getDriver() {
         //Get driver from ThreadLocalMap
-        WebDriver webDriver = driver.get();
-        if (webDriver == null || ((RemoteWebDriver) webDriver).getSessionId() == null) {
+        RemoteWebDriver webDriver = driver.get();
+        if (webDriver == null || webDriver.getSessionId() == null) {
             setupDriver(new ChromeBrowser());
             webDriver = driver.get();
         }

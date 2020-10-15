@@ -10,7 +10,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <selenoid.enabled>true</selenoid.enabled>
+        <selenoid.enabled>false</selenoid.enabled>
         <!--        UPDATE to your specific address-->
         <selenoid.hub.address>http://localhost:4444</selenoid.hub.address>
         <url.address>http://automationpractice.com/</url.address>
