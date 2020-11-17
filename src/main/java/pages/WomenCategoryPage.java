@@ -1,6 +1,5 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import forms.women.CatalogBlock;
 import forms.women.CategoriesBlock;
 import forms.women.InformationBlock;
@@ -9,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.Verify;
 
+import static com.codeborne.selenide.Condition.visible;
 import static java.lang.invoke.MethodHandles.lookup;
 
 @Verify(title = "Women - My Store")
@@ -26,9 +26,9 @@ public class WomenCategoryPage {
 
     public WomenCategoryPage verifyBlocksPresent() {
         LOGGER.trace("Verifying blocks are present on a page");
-        categoriesBlock.getSelf().shouldBe(Condition.visible);
-        catalogBlock.getSelf().shouldBe(Condition.visible);
-        informationBlock.getSelf().shouldBe(Condition.visible);
+        categoriesBlock.getSelf().shouldBe(visible);
+        catalogBlock.getSelf().shouldBe(visible);
+        informationBlock.getSelf().shouldBe(visible);
         return this;
     }
 }

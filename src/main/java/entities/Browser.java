@@ -1,16 +1,16 @@
 package entities;
 
-import enums.BrowserType;
-import org.openqa.selenium.MutableCapabilities;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 public interface Browser {
-    BrowserType getType();
+    String getType();
 
-    MutableCapabilities getBrowserOptions();
-
-    RemoteWebDriver getDriver();
+    String getVersion();
 
     DesiredCapabilities getCapabilities();
+
+    default String getResolution() {
+        return StringUtils.defaultIfEmpty(System.getProperty("browser.resolution"), "1920x1080");
+    }
 }

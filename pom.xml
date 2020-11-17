@@ -14,7 +14,10 @@
         <!--        UPDATE to your specific address-->
         <selenoid.hub.address>http://localhost:4444</selenoid.hub.address>
         <url.address>http://automationpractice.com/</url.address>
-<!--        <url.address>https://webrtc.github.io/samples/src/content/devices/input-output/</url.address>-->
+
+        <browser.version></browser.version>
+        <browser.resolution></browser.resolution>
+        <!--        <url.address>https://webrtc.github.io/samples/src/content/devices/input-output/</url.address>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -47,7 +50,7 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>5.14.0</version>
+            <version>5.15.1</version>
         </dependency>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
@@ -92,6 +95,8 @@
                         <buildDirectory>${project.build.directory}</buildDirectory>
                         <selenide.screenshots>false</selenide.screenshots>
                         <url.address>${url.address}</url.address>
+                        <browser.version>${browser.version}</browser.version>
+                        <browser.resolution>${browser.resolution}</browser.resolution>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
                         <!-- TestNG suite XML files -->
