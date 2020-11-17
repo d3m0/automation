@@ -1,39 +1,31 @@
 package utils;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
 import entities.Browser;
 import entities.ChromeBrowser;
 import entities.FirefoxBrowser;
-import enums.BrowserType;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import pages.IndexPage;
-
-import java.net.MalformedURLException;
-import java.net.URI;
 
 public class BaseTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class.getSimpleName());
-    public static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
 
     @BeforeMethod()
     @Parameters({"browser"})
     public void setup(@Optional("chrome") String browserName) {
         LOGGER.trace("Setting up {} driver", browserName);
         try {
-            BrowserType browserType = BrowserType.valueOf(browserName.toUpperCase());
-            switch (browserType) {
-                case CHROME:
+            switch (browserName) {
+                case "chrome":
                     setupDriver(new ChromeBrowser());
                     break;
-                case FIREFOX:
+                case "firefox":
                     setupDriver(new FirefoxBrowser());
                     break;
             }
@@ -43,71 +35,34 @@ public class BaseTest {
         }
     }
 
-    public void setupDriver(Browser browser) {
-        RemoteWebDriver webDriver;
-
-        if (Boolean.parseBoolean(System.getProperty("selenoid.enabled"))) {
-            webDriver = setupWebDriverWithSelenoid(browser);
-        } else {
-            webDriver = setupWebDriverWithWebDriverManager(browser);
-        }
-
-        driver.set(webDriver);
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        RemoteWebDriver driver = getDriver();
-        LOGGER.info("Closing WebDriver {}", driver.getSessionId());
-        driver.quit();
-    }
-
-    @AfterClass
-    public void terminate() {
-        //Remove the ThreadLocalMap element
-        LOGGER.info("Terminating WebDriver {}", driver.get().getSessionId());
-        driver.remove();
-    }
-
     public IndexPage openStartPage() {
-        RemoteWebDriver driver = getDriver();
-        WebDriverRunner.setWebDriver(driver);
         String url = System.getProperty("url.address");
         LOGGER.trace("Navigating to {}", url);
         Selenide.open(url);
         return LoadingPageFactory.get(IndexPage.class);
     }
 
-    private RemoteWebDriver setupWebDriverWithWebDriverManager(Browser browser) {
+    private void setupDriver(Browser browser) {
+        if (Boolean.parseBoolean(System.getProperty("selenoid.enabled"))) {
+            setupWebDriverWithSelenoid(browser);
+        } else {
+            setupWebDriverWithWebDriverManager(browser);
+        }
+    }
+
+    private void setupWebDriverWithWebDriverManager(Browser browser) {
         LOGGER.trace("Setting up driver with WebDriverManager");
-        BrowserType browserType = browser.getType();
-        DriverManagerType driverManagerType = DriverManagerType.valueOf(browserType.name());
-        WebDriverManager.getInstance(driverManagerType).setup();
-        return browser.getDriver();
+        Configuration.browser = browser.getType();
+        Configuration.browserSize = browser.getResolution();
     }
 
-    private RemoteWebDriver setupWebDriverWithSelenoid(Browser browser) {
+    private void setupWebDriverWithSelenoid(Browser browser) {
         LOGGER.trace("Setting up driver with Selenoid");
-        RemoteWebDriver webDriver = null;
         String selenoidHubAddress = System.getProperty("selenoid.hub.address");
-        DesiredCapabilities capabilities = browser.getCapabilities();
-        try {
-            webDriver = new RemoteWebDriver(URI.create(selenoidHubAddress + "/wd/hub").toURL(), capabilities);
-            LOGGER.info("WebDriver session id: {}", webDriver.getSessionId());
-        } catch (MalformedURLException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-        return webDriver;
-    }
-
-    private RemoteWebDriver getDriver() {
-        //Get driver from ThreadLocalMap
-        RemoteWebDriver webDriver = driver.get();
-        if (webDriver == null || webDriver.getSessionId() == null) {
-            setupDriver(new ChromeBrowser());
-            webDriver = driver.get();
-        }
-
-        return webDriver;
+        Configuration.remote = selenoidHubAddress + "/wd/hub";
+        Configuration.browser = browser.getType();
+        Configuration.browserVersion = browser.getVersion();
+        Configuration.browserSize = browser.getResolution();
+        Configuration.browserCapabilities = browser.getCapabilities();
     }
 }

@@ -1,33 +1,23 @@
 package entities;
 
-import enums.BrowserType;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
+import com.codeborne.selenide.Browsers;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class FirefoxBrowser implements Browser {
     @Override
-    public BrowserType getType() {
-        return BrowserType.FIREFOX;
+    public String getType() {
+        return Browsers.FIREFOX;
     }
 
     @Override
-    public FirefoxOptions getBrowserOptions() {
-        return new FirefoxOptions();
-    }
-
-    @Override
-    public RemoteWebDriver getDriver() {
-        return new FirefoxDriver(getBrowserOptions());
+    public String getVersion() {
+        return StringUtils.defaultString(System.getProperty("browser.version"), "79.0");
     }
 
     @Override
     public DesiredCapabilities getCapabilities() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setBrowserName("firefox");
-        capabilities.setVersion("79.0");
-        capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, getBrowserOptions());
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", false);
         return capabilities;

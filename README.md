@@ -7,15 +7,15 @@
 ***Docker***: 19.03.8  
 
 **Frameworks/Libraries**  
-***Selenide***: 5.13.0 - WebDriver  
-***Selenoid***: 1.10.0 - Selenium Hub  
+***Selenide***: 5.15.1 - WebDriver  
+***Selenoid***: 1.10.0 - Hub  
 ***Selenoid-UI***: 1.10.0 - Selenoid UI  
 ***TestNG***: 7.1.0 - Testing Framework  
 ***ReportPortal***: 5.1.0 - Reporting
 
 Stack:  
 - Selenide (test automation framework)  
-- Selenoid (Selenium Hub)  
+- Selenoid (Hub)  
 - TestNG (testing framework)  
 - Maven (project management tool)  
 - ReportPortal (reporting tool)  
@@ -40,7 +40,6 @@ Stack:
  │    │    │    │    ├─── FirefoxBrowser.java  
  │    │    │    │    └─── **/**.java  
  │    │    │    ├─── enums  
- │    │    │    │    ├─── BrowserType.java  
  │    │    │    │    └─── **/**.java  
  │    │    │    ├─── forms  
  │    │    │    │    └─── **/*Form.java  
@@ -52,13 +51,13 @@ Stack:
  │    │    │         ├─── MyListener.java  
  │    │    │         └─── Verify.java  
  │    │    └─── resources  
- │    │         └─── log4j2.xml  
+ │    │         ├─── log4j2.xml  
+ │              └─── reportportal.properties    
  │    └─── test  
  │         ├─── java  
  │         │    └─── testcases
  │         │         └─── **/*Test.java  
  │         └─── resources  
- │              ├─── reportportal.properties    
  │              └─── testng.xml  
  ├─── .gitignore  
  ├─── docker-compose.yml  
