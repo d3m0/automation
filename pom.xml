@@ -28,24 +28,19 @@
             <version>3.141.59</version>
         </dependency>
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>3.141.59</version>
-        </dependency>
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.28</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.14.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.12.1</version>
+            <version>2.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.codeborne</groupId>
@@ -55,12 +50,12 @@
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-testng</artifactId>
-            <version>5.0.6</version>
+            <version>5.0.8</version>
         </dependency>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-log4j</artifactId>
-            <version>5.0.2</version>
+            <version>5.0.3</version>
         </dependency>
         <dependency>
             <groupId>com.github.javafaker</groupId>
@@ -88,6 +83,22 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
                 <configuration>
+                    <parallel>methods</parallel>
+                    <threadCount>10</threadCount>
+                    <properties>
+                        <property>
+                            <name>usedefaultlisteners</name>
+                            <value>false</value> <!-- disabling default listeners is optional -->
+                        </property>
+                        <property>
+                            <name>listener</name>
+                            <value>utils.MyListener</value>
+                        </property>
+                        <property>
+                            <name>suitethreadpoolsize</name>
+                            <value>2</value>
+                        </property>
+                    </properties>
                     <disableXmlReport>true</disableXmlReport>
                     <systemPropertyVariables>
                         <selenoid.enabled>${selenoid.enabled}</selenoid.enabled>
@@ -101,6 +112,7 @@
                     <suiteXmlFiles>
                         <!-- TestNG suite XML files -->
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/failing.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

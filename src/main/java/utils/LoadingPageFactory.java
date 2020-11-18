@@ -15,7 +15,7 @@ public class LoadingPageFactory {
 
         String simpleName = pageObjectClass.getSimpleName();
         Logger logger = LoggerFactory.getLogger(simpleName);
-        logger.trace("Initializing page");
+        logger.info("Initializing page");
         Verify verify = pageObjectClass.getAnnotation(Verify.class);
 
         String expectedPageTitle;

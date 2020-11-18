@@ -50,6 +50,7 @@ public class Address {
                 ", line2='" + line2 + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
                 ", country='" + country + '\'' +
                 '}';
     }

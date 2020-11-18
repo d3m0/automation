@@ -20,7 +20,7 @@ public class AuthenticationPage {
     private SelenideElement createAccountButton;
 
     public CreateAccountPage navigateToCreateAccountPage(String email) {
-        LOGGER.trace("Logging in with email {}", email);
+        LOGGER.info("Logging in with email {}", email);
         emailAddressInput.setValue(email);
         createAccountButton.click();
         return LoadingPageFactory.get(CreateAccountPage.class);

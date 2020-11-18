@@ -1,4 +1,4 @@
-package entities;
+package entities.browser;
 
 import com.codeborne.selenide.Browsers;
 import org.apache.commons.lang3.StringUtils;

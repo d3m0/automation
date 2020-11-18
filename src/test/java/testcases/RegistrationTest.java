@@ -11,7 +11,7 @@ public class RegistrationTest extends BaseTest {
         openStartPage().navigateToAuthenticationPage();
     }
 
-    @Test
+    @Test(description = "User is able to create account")
     public void userIsAbleToCreateAccount() {
         User user = new UserBuilder().build();
         openStartPage()

@@ -5,7 +5,7 @@ import pages.IndexPage;
 import utils.BaseTest;
 
 public class IndexPageTest extends BaseTest {
-    @Test
+    @Test(description = "Verify that starting page opens")
     public void verifyIndexPageOpened() {
         openStartPage();
     }

@@ -25,7 +25,7 @@ public class WomenCategoryPage {
     public InformationBlock informationBlock;
 
     public WomenCategoryPage verifyBlocksPresent() {
-        LOGGER.trace("Verifying blocks are present on a page");
+        LOGGER.info("Verifying blocks are present on a page");
         categoriesBlock.getSelf().shouldBe(visible);
         catalogBlock.getSelf().shouldBe(visible);
         informationBlock.getSelf().shouldBe(visible);

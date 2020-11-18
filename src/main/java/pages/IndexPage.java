@@ -17,30 +17,30 @@ public class IndexPage {
     private HeaderForm headerForm;
 
     public void verifyTopMenu() {
-        LOGGER.trace("Verifying Top Menu block");
+        LOGGER.info("Verifying Top Menu block");
         headerForm.verifyLinkArePresent();
     }
 
     public WomenCategoryPage navigateToWomenCategory() {
-        LOGGER.trace("Navigating to WOMEN category");
+        LOGGER.info("Navigating to WOMEN category");
         headerForm.clickWomenCategory();
         return LoadingPageFactory.get(WomenCategoryPage.class);
     }
 
     public DressesCategoryPage navigateToDressesCategory() {
-        LOGGER.trace("Navigating to DRESSES category");
+        LOGGER.info("Navigating to DRESSES category");
         headerForm.clickDressesCategory();
         return LoadingPageFactory.get(DressesCategoryPage.class);
     }
 
     public TShirtsCategoryPage navigateToTShirtsCategory() {
-        LOGGER.trace("Navigating to T-SHIRTS category");
+        LOGGER.info("Navigating to T-SHIRTS category");
         headerForm.clickTShirtsCategory();
         return LoadingPageFactory.get(TShirtsCategoryPage.class);
     }
 
     public AuthenticationPage navigateToAuthenticationPage() {
-        LOGGER.trace("Navigating to Authentication page");
+        LOGGER.info("Navigating to Authentication page");
         headerForm.clickSignInButton();
         return LoadingPageFactory.get(AuthenticationPage.class);
     }

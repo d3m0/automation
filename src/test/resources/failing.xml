@@ -21,7 +21,4 @@
             </class>
         </classes>
     </test>
-    <listeners>
-        <listener class-name="utils.MyListener"/>
-    </listeners>
 </suite>

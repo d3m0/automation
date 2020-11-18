@@ -35,9 +35,10 @@ Stack:
  │    │    │    ├─── builders  
  │    │    │    │    └─── **/*Builder.java  
  │    │    │    ├─── entities  
- │    │    │    │    ├─── Browser.java  
- │    │    │    │    ├─── ChromeBrowser.java  
- │    │    │    │    ├─── FirefoxBrowser.java  
+ │    │    │    │    ├─── browser
+ │    │    │    │    │    ├─── Browser.java
+ │    │    │    │    │    ├─── ChromeBrowser.java  
+ │    │    │    │    │    └─── FirefoxBrowser.java  
  │    │    │    │    └─── **/**.java  
  │    │    │    ├─── enums  
  │    │    │    │    └─── **/**.java  

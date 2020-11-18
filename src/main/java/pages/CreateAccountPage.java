@@ -18,14 +18,14 @@ public class CreateAccountPage {
     private CreateAccountForm createAccountForm;
 
     public CreateAccountPage fillAccountInfo(User user) {
-        LOGGER.trace("Filling user information {}", user.toString());
+        LOGGER.info("Filling user information {}", user.toString());
         createAccountForm.fillPersonalInformation(user);
         createAccountForm.fillYourAddress(user);
         return this;
     }
 
     public MyAccountPage register() {
-        LOGGER.trace("Clicking REGISTER button");
+        LOGGER.info("Clicking REGISTER button");
         createAccountForm.register();
         return LoadingPageFactory.get(MyAccountPage.class);
     }

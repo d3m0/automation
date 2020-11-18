@@ -33,6 +33,5 @@
         <Logger name="org.apache.hc.client5.http.wire" level="DEBUG" additivity="false"/>
         <Logger name="io.github.bonigarcia.wdm" level="DEBUG" additivity="false"/>
         <Logger name="com.codeborne.selenide.drivercommands" level="INFO" additivity="false"/>
-        <Logger name="com.codeborne.selenide.webdriver" level="DEBUG" additivity="false"/>
     </Loggers>
 </Configuration>
