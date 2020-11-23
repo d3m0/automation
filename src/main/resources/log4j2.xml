@@ -2,10 +2,10 @@
 <Configuration packages="com.epam.ta.reportportal.log4j.appender" status="INFO">
     <Appenders>
         <Console name="ConsoleAppender" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d %-5level %logger{36} - %msg%n%throwable"/>
+            <PatternLayout pattern="%d : %highlight{%-5level} : %logger{36} - %msg%n%throwable" disableAnsi="false"/>
         </Console>
         <ReportPortalLog4j2Appender name="ReportPortalAppender">
-            <PatternLayout pattern="%-5level %logger{36} - %msg%n%throwable"/>
+            <PatternLayout pattern="%-5level : %logger{36} - %msg%n%throwable"/>
         </ReportPortalLog4j2Appender>
     </Appenders>
     <Loggers>
@@ -30,7 +30,7 @@
             <AppenderRef ref="ReportPortalAppender"/>
         </Logger>
         <Logger name="com.codeborne.selenide.impl" level="DEBUG" additivity="false"/>
-        <Logger name="org.apache.hc.client5.http.wire" level="DEBUG" additivity="false"/>
+        <Logger name="org.apache.hc.client5.http" level="DEBUG" additivity="false"/>
         <Logger name="io.github.bonigarcia.wdm" level="DEBUG" additivity="false"/>
         <Logger name="com.codeborne.selenide.drivercommands" level="INFO" additivity="false"/>
     </Loggers>
