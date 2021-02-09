@@ -1,9 +1,10 @@
 package forms;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsContainer;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
+
+import static com.codeborne.selenide.Condition.visible;
 
 public class HeaderForm extends ElementsContainer {
     @FindBy(xpath = ".//ul[not(contains(@style, 'display: none'))]/li/a[@title='Women']")
@@ -19,9 +20,9 @@ public class HeaderForm extends ElementsContainer {
     private SelenideElement signInButton;
 
     public void verifyLinkArePresent() {
-        womenButton.shouldBe(Condition.visible);
-        dressesButton.shouldBe(Condition.visible);
-        tShirtsButton.shouldBe(Condition.visible);
+        womenButton.shouldBe(visible);
+        dressesButton.shouldBe(visible);
+        tShirtsButton.shouldBe(visible);
     }
 
     public void clickWomenCategory() {

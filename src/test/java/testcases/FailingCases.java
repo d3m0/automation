@@ -19,7 +19,6 @@ public class FailingCases extends BaseTest {
 
     @BeforeSuite
     public void setup(@Optional("chrome") String browserName) {
-        LOGGER.debug("WE ARE IN TEST BEFORE");
     }
 
     @BeforeTest
