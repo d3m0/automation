@@ -3,7 +3,7 @@ package entities;
 import builders.UserBuilder;
 import enums.Title;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class User {
     private final Title title;
@@ -11,7 +11,7 @@ public class User {
     private final String lastName;
     private final String email;
     private final String password;
-    private final Date dateOfBirth;
+    private final LocalDate dateOfBirth;
     private final Address address;
     private final String mobilePhone;
 
@@ -46,7 +46,7 @@ public class User {
         return password;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 

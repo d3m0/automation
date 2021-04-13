@@ -12,7 +12,7 @@ public class ChromeBrowser implements Browser {
 
     @Override
     public String getVersion() {
-        return StringUtils.defaultIfEmpty(System.getProperty("browser.version"), "84.0");
+        return StringUtils.defaultIfEmpty(System.getProperty("browser.version"), "88.0");
     }
 
     @Override

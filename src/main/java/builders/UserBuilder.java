@@ -5,7 +5,8 @@ import entities.Address;
 import entities.User;
 import enums.Title;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 public class UserBuilder {
     private Title title;
@@ -13,7 +14,7 @@ public class UserBuilder {
     private String lastName;
     private String email;
     private String password;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private Address address;
     private String mobilePhone;
 
@@ -24,7 +25,7 @@ public class UserBuilder {
         this.lastName = faker.name().lastName();
         this.email = faker.internet().emailAddress();
         this.password = faker.internet().password();
-        this.dateOfBirth = faker.date().birthday();
+        this.dateOfBirth = faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         this.address = new AddressBuilder().build();
         this.mobilePhone = faker.phoneNumber().cellPhone();
     }
@@ -74,11 +75,11 @@ public class UserBuilder {
         return this;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public UserBuilder setDateOfBirth(Date dateOfBirth) {
+    public UserBuilder setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;
     }

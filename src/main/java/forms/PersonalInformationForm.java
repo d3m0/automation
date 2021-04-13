@@ -6,8 +6,7 @@ import entities.User;
 import enums.Title;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PersonalInformationForm extends ElementsContainer {
     @FindBy(xpath = ".//label[normalize-space()='Mr.']")
@@ -51,12 +50,10 @@ public class PersonalInformationForm extends ElementsContainer {
         fillDateOfBirth(user.getDateOfBirth());
     }
 
-    private void fillDateOfBirth(Date dateOfBirth) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(dateOfBirth);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        int month = cal.get(Calendar.MONTH) + 1;
-        int year = cal.get(Calendar.YEAR);
+    private void fillDateOfBirth(LocalDate dateOfBirth) {
+        int day = dateOfBirth.getDayOfMonth();
+        int month = dateOfBirth.getMonthValue();
+        int year = dateOfBirth.getYear();
 
         dobDaysDropdown.selectOptionByValue(String.valueOf(day));
         dobMonthsDropdown.selectOptionByValue(String.valueOf(month));

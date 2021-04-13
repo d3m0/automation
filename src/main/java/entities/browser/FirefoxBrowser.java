@@ -12,7 +12,7 @@ public class FirefoxBrowser implements Browser {
 
     @Override
     public String getVersion() {
-        return StringUtils.defaultString(System.getProperty("browser.version"), "79.0");
+        return StringUtils.defaultString(System.getProperty("browser.version"), "84.0");
     }
 
     @Override

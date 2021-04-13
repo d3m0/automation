@@ -57,19 +57,19 @@ public class BaseTest {
 
     private void setupDriver(Browser browser) {
         if (Boolean.parseBoolean(System.getProperty("selenoid.enabled"))) {
-            setupWebDriver(browser);
-        } else {
             setupRemoteWebDriver(browser);
+        } else {
+            setupWebDriver(browser);
         }
     }
 
-    private void setupRemoteWebDriver(Browser browser) {
+    private void setupWebDriver(Browser browser) {
         LOGGER.info("Setting up local WebDriver");
         Configuration.browser = browser.getType();
         Configuration.browserSize = browser.getResolution();
     }
 
-    private void setupWebDriver(Browser browser) {
+    private void setupRemoteWebDriver(Browser browser) {
         LOGGER.info("Setting up remote WebDriver for Selenoid");
         String selenoidHubAddress = System.getProperty("selenoid.hub.address");
         Configuration.remote = selenoidHubAddress + "/wd/hub";

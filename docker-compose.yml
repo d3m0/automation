@@ -23,7 +23,7 @@ services:
     image: selenoid/vnc:chrome_84.0
 
   firefox:
-    image: selenoid/vnc:firefox_79.0
+    image: selenoid/vnc:firefox_84.0
 
   gateway:
     image: traefik:v2.0.5
