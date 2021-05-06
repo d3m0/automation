@@ -15,7 +15,6 @@
         <selenoid.hub.address>http://localhost:4444</selenoid.hub.address>
         <url.address>http://automationpractice.com/</url.address>
 
-        <browser.version></browser.version>
         <browser.resolution></browser.resolution>
         <!--        <url.address>https://webrtc.github.io/samples/src/content/devices/input-output/</url.address>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -112,7 +111,6 @@
                         <buildDirectory>${project.build.directory}</buildDirectory>
                         <selenide.screenshots>false</selenide.screenshots>
                         <url.address>${url.address}</url.address>
-                        <browser.version>${browser.version}</browser.version>
                         <browser.resolution>${browser.resolution}</browser.resolution>
                     </systemPropertyVariables>
                     <suiteXmlFiles>

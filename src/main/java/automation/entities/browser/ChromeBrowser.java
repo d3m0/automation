@@ -1,5 +1,6 @@
 package automation.entities.browser;
 
+import automation.utils.PropertiesReader;
 import com.codeborne.selenide.Browsers;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +17,10 @@ public class ChromeBrowser implements Browser {
 
     @Override
     public String getVersion() {
-        return StringUtils.defaultIfEmpty(System.getProperty("browser.version"), "88.0");
+        Map<String, String> properties = PropertiesReader.getProperties();
+        String chromeVersion = properties.get("chrome.version");
+
+        return StringUtils.defaultIfEmpty(chromeVersion, "88.0");
     }
 
     @Override
