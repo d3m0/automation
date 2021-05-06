@@ -3,15 +3,15 @@
 **Environment**  
 ***Platform***: Linux/MacOS/Windows  
 ***Java***: 11  
-***Maven***: 3.6.3  
+***Maven***: 3.8.1  
 ***Docker***: 19.03.8  
 
 **Frameworks/Libraries**  
-***Selenide***: 5.15.1 - WebDriver  
-***Selenoid***: 1.10.0 - Hub  
-***Selenoid-UI***: 1.10.0 - Selenoid UI  
-***TestNG***: 7.1.0 - Testing Framework  
-***ReportPortal***: 5.1.0 - Reporting
+***Selenide***: 5.20.4 - WebDriver  
+***Selenoid***: 1.10.3 - Hub  
+***Selenoid-UI***: 1.10.3 - Selenoid UI  
+***TestNG***: 7.4.0 - Testing Framework  
+***ReportPortal***: 5.3.5 - Reporting
 
 Stack:  
 - Selenide (test automation framework)  
@@ -32,21 +32,21 @@ Stack:
  ├─── src  
  │    ├─── main  
  │    │    ├─── java  
- │    │    │    ├─── builders  
+ │    │    │    ├─── automation.builders  
  │    │    │    │    └─── **/*Builder.java  
- │    │    │    ├─── entities  
+ │    │    │    ├─── automation.entities  
  │    │    │    │    ├─── browser
  │    │    │    │    │    ├─── Browser.java
  │    │    │    │    │    ├─── ChromeBrowser.java  
  │    │    │    │    │    └─── FirefoxBrowser.java  
  │    │    │    │    └─── **/**.java  
- │    │    │    ├─── enums  
+ │    │    │    ├─── automation.enums  
  │    │    │    │    └─── **/**.java  
- │    │    │    ├─── forms  
+ │    │    │    ├─── automation.forms  
  │    │    │    │    └─── **/*Form.java  
- │    │    │    ├─── pages  
+ │    │    │    ├─── automation.pages  
  │    │    │    │    └─── **/*Page.java  
- │    │    │    └─── utils  
+ │    │    │    └─── com.d3m0.automation.utils  
  │    │    │         ├─── BaseTest.java  
  │    │    │         ├─── LoadingPageFactory.java  
  │    │    │         ├─── MyListener.java  
