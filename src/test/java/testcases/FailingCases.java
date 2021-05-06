@@ -10,10 +10,8 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.By;
 import org.testng.annotations.*;
 
-import static java.lang.invoke.MethodHandles.lookup;
-
+@Slf4j
 public class FailingCases extends BaseTest {
-    private static final Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass().getSimpleName());
     private static final String INCORRECT_XPATH = ".//ul[not(contains(@style, 'display: none'))]/li/a[@title='T-shirts']/span";
 
     @BeforeSuite
@@ -22,7 +20,7 @@ public class FailingCases extends BaseTest {
 
     @BeforeTest
     public void setup1(@Optional("chrome") String browserName) {
-        LOGGER.debug("Setting up browser for test elementIsNotPresentOnAPage");
+        log.debug("Setting up browser for test elementIsNotPresentOnAPage");
         setupBrowser(browserName);
     }
 
@@ -35,7 +33,7 @@ public class FailingCases extends BaseTest {
 
     @BeforeTest
     public void setup2(@Optional("chrome") String browserName) {
-        LOGGER.debug("Setting up browser for test clickNonexistentElement");
+        log.debug("Setting up browser for test clickNonexistentElement");
         setupBrowser(browserName);
     }
 

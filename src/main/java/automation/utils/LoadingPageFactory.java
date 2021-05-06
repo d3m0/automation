@@ -2,20 +2,19 @@ package automation.utils;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
+@Slf4j
 public class LoadingPageFactory {
     public static <T> T get(Class<T> pageObjectClass) {
         WebDriver driver = WebDriverRunner.getWebDriver();
 
         String simpleName = pageObjectClass.getSimpleName();
-        Logger logger = LoggerFactory.getLogger(simpleName);
-        logger.info("Initializing page");
+        log.info("Initializing page");
         Verify verify = pageObjectClass.getAnnotation(Verify.class);
 
         String expectedPageTitle;

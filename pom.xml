@@ -68,6 +68,11 @@
             <artifactId>ashot</artifactId>
             <version>1.5.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -93,7 +98,7 @@
                         </property>
                         <property>
                             <name>listener</name>
-                            <value>utils.MyListener</value>
+                            <value>automation.utils.MyListener</value>
                         </property>
                         <property>
                             <name>suitethreadpoolsize</name>

@@ -2,12 +2,11 @@ package automation.utils;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
@@ -17,10 +16,8 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-import static java.lang.invoke.MethodHandles.lookup;
-
+@Slf4j
 public class MyListener extends ReportPortalTestNGListener {
-    private final static Logger LOGGER = LoggerFactory.getLogger(lookup().lookupClass().getSimpleName());
 
     public MyListener() {
         super();
@@ -38,10 +35,10 @@ public class MyListener extends ReportPortalTestNGListener {
             takeScreenshotWithSeleniumWebDriver((TakesScreenshot) webDriver, destFile);
             getScreenshotByAShot(webDriver, destFile);
         } catch (IOException exception) {
-            LOGGER.error(exception.getMessage(), exception);
+            log.error(exception.getMessage(), exception);
         }
 
-        LOGGER.error("RP_MESSAGE#FILE#{}#{}", destFile, "Screenshot");
+        log.error("RP_MESSAGE#FILE#{}#{}", destFile, "Screenshot");
         super.onTestFailure(testResult);
     }
 
