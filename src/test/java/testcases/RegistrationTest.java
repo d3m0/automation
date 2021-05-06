@@ -1,9 +1,9 @@
 package testcases;
 
-import builders.UserBuilder;
-import entities.User;
+import automation.builders.UserBuilder;
+import automation.entities.User;
+import automation.utils.BaseTest;
 import org.testng.annotations.Test;
-import utils.BaseTest;
 
 public class RegistrationTest extends BaseTest {
     @Test

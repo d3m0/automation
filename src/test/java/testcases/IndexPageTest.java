@@ -1,8 +1,8 @@
 package testcases;
 
+import automation.pages.IndexPage;
+import automation.utils.BaseTest;
 import org.testng.annotations.Test;
-import pages.IndexPage;
-import utils.BaseTest;
 
 public class IndexPageTest extends BaseTest {
     @Test(description = "Verify that starting page opens")
