@@ -9,6 +9,7 @@ services:
     volumes:
       - ./config:/etc/selenoid
       - /var/run/docker.sock:/var/run/docker.sock
+    container_name: selenoid
 
   selenoid-ui:
     network_mode: bridge
@@ -18,12 +19,15 @@ services:
       - 8090:8080
     links:
       - selenoid
+    container_name: selenoid-ui
 
   chrome:
-    image: selenoid/vnc:chrome_84.0
+    image: selenoid/vnc:chrome_90.0
+    container_name: chrome_90.0
 
   firefox:
-    image: selenoid/vnc:firefox_84.0
+    image: selenoid/vnc:firefox_87.0
+    container_name: firefox_87.0
 
   gateway:
     image: traefik:v2.0.5
